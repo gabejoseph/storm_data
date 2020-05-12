@@ -1,4 +1,4 @@
-class Scraper 
+class StormData::Scraper 
   
   def self.scrape_page 
     atlc = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=atlc&fdays=5"))
