@@ -2,24 +2,32 @@ class StormData::Scraper
   
   @@all = []
   
+  attr_accessor :prelim, :extra
+  
   def self.scrape
+    @prelim = prelim
+    @extra = extra
     input = StormData::CLI.all[0].region
     case input
     when "Atlantic"
-      atlc = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=atlc&fdays=5"))
+      atlantic = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=atlc&fdays=5"))
+      self.prelim = atlantic.css("button").collect{|x| x.text}
       binding.pry
+      save
     when "Eastern Pacific"
-      epac = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=epac&fdays=5"))
+      eastern = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=epac&fdays=5"))
+      eastern.css("button").collect{|x| x.text}
+      save
     when "Central Pacific"
-      cpac = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=cpac&fdays=5"))
+      pacific = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=cpac&fdays=5"))
+      pacific.css("button").collect{|x| x.text}
+      save
     end 
-    binding.pry
-    new = atlc.css("button").collect{|x| x.text}
-    
-    array = []
-    atlc.css("button").text
-    puts atlc.css("pre").text #extra data
     binding.pry 
+  end 
+  
+  def save 
+    @@all << self 
   end 
   
   # def preliminary_data
