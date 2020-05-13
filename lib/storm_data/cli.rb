@@ -10,13 +10,20 @@ class StormData::CLI
     puts "Which region would you like to check for activity?"
     puts "Atlantic, Eastern Pacific or Central Pacific?"
     @region = gets.strip
-    if region == "Atlantic" || region == "Eastern Pacific" || region == "Central Pacific"
-      #Method1(region)
+    if @region == "Atlantic" || @region == "Eastern Pacific" || @region == "Central Pacific"
+      mysterymethod
       @@all << self 
     else 
       puts "Invalid response, please enter 'Atlantic, Eastern Pacific or Central Pacific."
       call 
     end 
+  end 
+  
+  def mysterymethod
+    StormData::Scraper #method that collects appropriate data
+    #collect data from scraper on appropriate region.
+    #this includes surface level data
+    #assign this data to self and push to all
   end 
   
   def self.all 

@@ -7,15 +7,14 @@ class StormData::Scraper
     epac = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=epac&fdays=5"))
     cpac = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=cpac&fdays=5"))
     
-    StormData::CLI.all[0].region.each do |x|
-      @@all << x 
-    end 
+    # StormData::CLI.all[0].region.each do |x|
+    #   @@all << x 
+    # end 
     
-
-    atlc.css("button").each do |x|
-      x
-      binding.pry
-    end
+    array = []
+    atlc.css("button").text
+    puts atlc.css("pre").text
+    binding.pry 
   end 
   
   def self.all 
