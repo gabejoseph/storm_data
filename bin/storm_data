@@ -3,4 +3,4 @@ require_relative '../lib/storm_data'
 
 StormData::CLI.new.call
 
-StormData::Scraper.scrape
+StormData::Scraper.new.scrape

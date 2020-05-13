@@ -4,23 +4,20 @@ class StormData::Scraper
   
   attr_accessor :prelim, :extra
   
-  def self.scrape
-    @prelim = prelim
-    @extra = extra
+  def scrape
     input = StormData::CLI.all[0].region
     case input
     when "Atlantic"
       atlantic = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=atlc&fdays=5"))
-      self.prelim = atlantic.css("button").collect{|x| x.text}
-      binding.pry
+      @prelim = atlantic.css("button").collect{|x| x.text}
       save
     when "Eastern Pacific"
       eastern = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=epac&fdays=5"))
-      eastern.css("button").collect{|x| x.text}
+      @prelim = eastern.css("button").collect{|x| x.text}
       save
     when "Central Pacific"
       pacific = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=cpac&fdays=5"))
-      pacific.css("button").collect{|x| x.text}
+      @prelim = pacific.css("button").collect{|x| x.text}
       save
     end 
     binding.pry 
