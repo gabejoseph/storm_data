@@ -5,7 +5,12 @@ class StormData::CLI
     puts "Which region would you like to check for activity?"
     puts "Atlantic, Eastern Pacific or Central Pacific?"
     region = gets.strip
-    #Method1(region)
+    if "Atlantic" || "Eastern Pacific" || "Central Pacific"
+      #Method1(region)
+    else 
+      puts "Invalid response, please enter 'Atlantic, Eastern Pacific or Central Pacific."
+      call 
+    end 
   end 
   
   def method1(region)
@@ -23,5 +28,7 @@ class StormData::CLI
       call 
     end 
   end 
+  
+  
     
 end
