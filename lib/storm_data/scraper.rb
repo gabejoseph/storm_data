@@ -3,11 +3,17 @@ class StormData::Scraper
   @@all = []
   
   def self.scrape
-    atlc = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=atlc&fdays=5"))
-    epac = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=epac&fdays=5"))
-    cpac = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=cpac&fdays=5"))
-    
-    blank = StormData::CLI.all[0].region
+    input = StormData::CLI.all[0].region
+    case input
+    when "Atlantic"
+      atlc = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=atlc&fdays=5"))
+      binding.pry
+    when "Eastern Pacific"
+      epac = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=epac&fdays=5"))
+    when "Central Pacific"
+      cpac = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=cpac&fdays=5"))
+    end 
+    binding.pry
     new = atlc.css("button").collect{|x| x.text}
     
     array = []
@@ -16,8 +22,7 @@ class StormData::Scraper
     binding.pry 
   end 
   
-  # def regular data 
-    if 
+  # def preliminary_data
   # end 
   
   # def extra_data 
