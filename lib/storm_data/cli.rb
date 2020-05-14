@@ -8,8 +8,7 @@ class StormData::CLI
     @region = region
     @region = gets.strip
     if @region == "Atlantic" || @region == "Eastern Pacific" || @region == "Central Pacific"
-      StormData::Scraper.new.scrape(@region)
-      binding.pry
+      StormData::Scraper.new.scrape_prelim(@region)
       mysterymethod
       @@all << self 
     else 
