@@ -2,10 +2,9 @@ class StormData::Scraper
   
   @@all = []
   
-  attr_accessor :prelim, :extra
+  attr_accessor :prelim
   
   def scrape_prelim(user_input)
-    binding.pry
     case user_input
     when "Atlantic"
       atlantic = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=atlc&fdays=5"))
@@ -22,7 +21,7 @@ class StormData::Scraper
     end
   end 
   
-  def add_extra(user_input)
+  def self.add_extra(user_input)
     case user_input
     when "Atlantic"
       atlantic = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=atlc&fdays=5"))
@@ -39,17 +38,6 @@ class StormData::Scraper
   def save 
     @@all << self 
   end 
-  
-  # def preliminary_data
-  # end 
-  
-  # def extra_data 
-  #   if .css("pre").text 
-  #     puts - .css("pre").text
-  #   else 
-  #     puts "No extra information on this weather disturbance!"
-  #   end 
-  # end 
   
   def self.all 
     @@all
