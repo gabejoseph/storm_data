@@ -4,7 +4,16 @@ class StormData::Scraper
   
   attr_accessor :prelim, :extra
   
-  def scrape
+  def scrape(user_input)
+    if user_input == 
+      add_prelim
+    elsif user_input ==
+      add_prelim
+      add_extra
+    end 
+  end 
+  
+  def add_prelim
     input = StormData::CLI.all[0].region
     case input
     when "Atlantic"
@@ -20,7 +29,24 @@ class StormData::Scraper
       @prelim = pacific.css("button").collect{|x| x.text}
       save
     end 
-    binding.pry 
+  end
+  
+  def add_extra 
+    input = StormData::CLI.all[0].region
+    case input
+    when "Atlantic"
+      atlantic = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=atlc&fdays=5"))
+      @prelim = atlantic.css("pre").collect{|x| x.text}
+      save
+    when "Eastern Pacific"
+      eastern = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=epac&fdays=5"))
+      @prelim = eastern.css("pre").collect{|x| x.text}
+      save
+    when "Central Pacific"
+      pacific = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=cpac&fdays=5"))
+      @prelim = pacific.css("pre").collect{|x| x.text}
+      save
+    end
   end 
   
   def save 
