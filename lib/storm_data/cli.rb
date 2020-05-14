@@ -6,9 +6,6 @@ class StormData::CLI
   
   def call 
     @region = region
-    puts "Welcome to Storm Chasers!"
-    puts "Which region would you like to check for activity?"
-    puts "Atlantic, Eastern Pacific or Central Pacific?"
     @region = gets.strip
     if @region == "Atlantic" || @region == "Eastern Pacific" || @region == "Central Pacific"
       StormData::Scraper.new.scrape(@region)

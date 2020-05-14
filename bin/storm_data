@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 require_relative '../lib/storm_data'
 
+puts "Welcome to Storm Chasers!"
+puts "Which region would you like to check for activity?"
+puts "Atlantic, Eastern Pacific or Central Pacific?"
 StormData::CLI.new.call
 
-StormData::Scraper.new.scrape
