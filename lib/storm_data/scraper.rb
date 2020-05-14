@@ -5,6 +5,7 @@ class StormData::Scraper
   attr_accessor :prelim, :extra
   
   def scrape(user_input)
+    binding.pry
     if user_input == 
       add_prelim
     elsif user_input ==

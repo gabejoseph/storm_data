@@ -11,6 +11,8 @@ class StormData::CLI
     puts "Atlantic, Eastern Pacific or Central Pacific?"
     @region = gets.strip
     if @region == "Atlantic" || @region == "Eastern Pacific" || @region == "Central Pacific"
+      StormData::Scraper.new.scrape(@region)
+      binding.pry
       mysterymethod
       @@all << self 
     else 
