@@ -8,7 +8,6 @@ class StormData::CLI
     @region = gets.strip
     if @region == "Atlantic" || @region == "Eastern Pacific" || @region == "Central Pacific"
       prelim_data
-      StormData::Scraper.add_extra(@region)
       save
     else 
       puts "Invalid response, please enter 'Atlantic, Eastern Pacific or Central Pacific."
@@ -21,13 +20,28 @@ class StormData::CLI
     if variable.prelim[1] != "None"
       puts "Registered Disturbances are as follows:"
       puts "#{variable.prelim.join(" ")}"
+      supp_data
     else 
       puts "No Disturbances detected"
+      supp_data
     end 
+    supp_data
   end 
   
   def supp_data 
-    
+    puts "Would you like supplementary data on a region?"
+    puts "Type 'Yes or No'"
+    variable = gets.strip
+    if variable == "Yes"
+      StormData::Scraper.add_extra(@region)
+    elsif variable == "No"
+      puts "Thanks for using 'Storm Chasers!'"
+      clear
+      StormData::Scraper.clear
+    else
+      puts "Invalid reponse, please enter 'Yes or No'"
+      supp_data
+    end 
   end 
   
   def save  
