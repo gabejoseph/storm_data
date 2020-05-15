@@ -28,32 +28,32 @@ class StormData::CLI
   end 
   
   def supp_data 
-    puts "Would you like supplementary data on a region?"
-    puts "Type 'Yes or No' (case-sensitive)"
+    puts "Would you like supplementary data on this region?"
+    puts "Type 'Yes or No'"
     variable = gets.strip
-    if variable == "Yes"
+    if variable == "Yes" || variable == "yes"
       StormData::Scraper.add_extra(@region)
       restart
-    elsif variable == "No"
+    elsif variable == "No" || variable == "no"
       restart
     else
-      puts "Invalid reponse, please enter 'Yes or No' (case-sensitive)"
+      puts "Invalid reponse, please enter 'Yes or No'"
       supp_data
     end 
   end 
   
   def restart 
     puts "Would you like to check a new region?"
-    puts "Type 'Yes or No' (case-sensitive)"
+    puts "Type 'Yes or No'"
     variable = gets.strip
-    if variable == "Yes"
+    if variable == "Yes" || variable == "yes"
       clear 
       StormData::Scraper.clear
       call
-    elsif variable == "No"
+    elsif variable == "No" || variable == "no"
       puts "Thanks for using 'Storm Chasers!'"
     else 
-      "Invalid response, pelase enter 'Yes or No'"
+      "Invalid response, please enter 'Yes or No'"
       restart
     end 
   end 
