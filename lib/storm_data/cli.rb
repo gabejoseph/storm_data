@@ -25,7 +25,6 @@ class StormData::CLI
       puts "No Disturbances detected"
       supp_data
     end 
-    supp_data
   end 
   
   def supp_data 
@@ -34,13 +33,27 @@ class StormData::CLI
     variable = gets.strip
     if variable == "Yes"
       StormData::Scraper.add_extra(@region)
+      restart
     elsif variable == "No"
-      puts "Thanks for using 'Storm Chasers!'"
-      clear
-      StormData::Scraper.clear
+      restart
     else
       puts "Invalid reponse, please enter 'Yes or No'"
       supp_data
+    end 
+  end 
+  
+  def restart 
+    puts "Would you like to check a new region?"
+    variable = gets.strip
+    if variable == "Yes"
+      clear 
+      StormData::Scraper.clear
+      call
+    elsif variable == "No"
+      puts "Thanks for using 'Storm Chasers!'"
+    else 
+      "Invalid response, pelase enter 'Yes or No'"
+      restart
     end 
   end 
   
