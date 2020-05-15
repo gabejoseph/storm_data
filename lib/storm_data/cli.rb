@@ -5,6 +5,8 @@ class StormData::CLI
   @@all = []
   
   def call 
+    puts "Which region would you like to check for activity?"
+    puts "Atlantic, Eastern Pacific or Central Pacific? (case-sensitive)"
     @region = gets.strip
     if @region == "Atlantic" || @region == "Eastern Pacific" || @region == "Central Pacific"
       prelim_data
@@ -47,7 +49,7 @@ class StormData::CLI
     puts "Type 'Yes or No'"
     variable = gets.strip
     if variable == "Yes" || variable == "yes"
-      clear 
+      StormData::CLI.clear 
       StormData::Scraper.clear
       call
     elsif variable == "No" || variable == "no"
@@ -67,7 +69,7 @@ class StormData::CLI
   end 
   
   def self.clear 
-    @all.clear 
+    @@all.clear 
   end 
     
 end
