@@ -7,14 +7,24 @@ class StormData::CLI
   def call 
     @region = gets.strip
     if @region == "Atlantic" || @region == "Eastern Pacific" || @region == "Central Pacific"
-      variable = StormData::Scraper.new.scrape_prelim(@region)[0][1]
+      hammer_time
+      binding.pry
       "None" == StormData::Scraper.new.scrape_prelim(@region)[0][1]
-      puts "#{variable[0]} #{variable[1]}"
       StormData::Scraper.add_extra(@region)
       @@all << self 
     else 
       puts "Invalid response, please enter 'Atlantic, Eastern Pacific or Central Pacific."
       call 
+    end 
+  end 
+  
+  def hammer_time 
+    variable = StormData::Scraper.new.scrape_prelim(@region)[0]
+    if variable.prelim[1] != "None"
+      puts "Registered Disturbances are as follows:"
+      puts "#{variable.prelim.join(" ")}"
+    else 
+      puts "No Disturbances detected"
     end 
   end 
   
