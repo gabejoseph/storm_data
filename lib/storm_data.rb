@@ -1,6 +1,7 @@
 require_relative "./storm_data/version"
 require_relative "./storm_data/cli"
 require_relative "./storm_data/scraper"
+require_relative "./storm_data/region"
 require "nokogiri"
 require "pry"
 require "open-uri"

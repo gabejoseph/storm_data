@@ -3,5 +3,8 @@ require_relative '../lib/storm_data'
 
 puts "Welcome to Storm Chasers!"
 
+StormData::Region.new("Atlantic", "https://www.nhc.noaa.gov/gtwo.php?basin=atlc&fdays=5")
+StormData::Region.new("Eastern Pacific", "https://www.nhc.noaa.gov/gtwo.php?basin=epac&fdays=5")
+StormData::Region.new("Central Pacific", "https://www.nhc.noaa.gov/gtwo.php?basin=cpac&fdays=5")
 StormData::CLI.new.call
 
