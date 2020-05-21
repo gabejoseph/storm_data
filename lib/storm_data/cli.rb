@@ -13,9 +13,7 @@ class StormData::CLI
     puts "Which region would you like to check for activity?"
     puts "Atlantic, Eastern Pacific or Central Pacific? (case-sensitive)"
     userinput = gets.strip
-    @region = StormData::Region.find_by_name(userinput) #returns either a region object or nil
-    binding.pry
-    
+    @region = StormData::Region.find_by_name(userinput) #returns either a region object or nil    
     # get data for that region object
     if @region 
       # get data for that region

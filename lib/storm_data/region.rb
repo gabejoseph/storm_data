@@ -10,9 +10,8 @@ class StormData::Region
     end 
 
     def self.find_by_name(userinput)
-        if @@all.include?{|x| x.name == userinput}
-            return x
-        end
+        returnvalue = self.all.find{|x| x.name == userinput}
+        returnvalue
     end 
 
     def save 
