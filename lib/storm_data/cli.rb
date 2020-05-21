@@ -13,7 +13,7 @@ class StormData::CLI
     prelim_data(x)
   end 
   
-  def prelim_data(x) 
+  def prelim_data(x)
     if x[1] != "None"
       puts "Registered Disturbances are as follows:"
       puts "#{variable.prelim.join(" ")}"
