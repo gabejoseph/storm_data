@@ -10,12 +10,11 @@ class StormData::CLI
     userinput = gets.strip
     @region = StormData::Region.find_by_name(userinput) 
     x = StormData::Scraper.scrape_prelim(@region)
-    binding.pry
+    prelim_data(x)
   end 
   
-  def self.prelim_data 
-    if @region.prelim[1] != "None"
-      binding.pry
+  def prelim_data(x) 
+    if x[1] != "None"
       puts "Registered Disturbances are as follows:"
       puts "#{variable.prelim.join(" ")}"
       supp_data
