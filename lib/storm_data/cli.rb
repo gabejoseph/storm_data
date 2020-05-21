@@ -8,13 +8,14 @@ class StormData::CLI
     puts "Which region would you like to check for activity?"
     puts "Atlantic, Eastern Pacific or Central Pacific? (case-sensitive)"
     userinput = gets.strip
-    @region = StormData::Region.find_by_name(userinput)  
+    @region = StormData::Region.find_by_name(userinput) 
+    x = StormData::Scraper.scrape_prelim(@region)
     binding.pry
   end 
   
-  def prelim_data 
-    variable = StormData::Scraper.new.scrape_prelim(@region)[0]
-    if variable.prelim[1] != "None"
+  def self.prelim_data 
+    if @region.prelim[1] != "None"
+      binding.pry
       puts "Registered Disturbances are as follows:"
       puts "#{variable.prelim.join(" ")}"
       supp_data

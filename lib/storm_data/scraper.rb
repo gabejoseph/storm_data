@@ -4,8 +4,8 @@ class StormData::Scraper
   
   attr_accessor :prelim
   
-  def scrape_prelim(user_input)
-    case user_input
+  def self.scrape_prelim(user_input)
+    case user_input.name
     when "Atlantic"
       atlantic = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=atlc&fdays=5"))
       @prelim = atlantic.css("button").collect{|x| x.text}
