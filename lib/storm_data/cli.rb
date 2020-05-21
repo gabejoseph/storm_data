@@ -3,26 +3,13 @@ class StormData::CLI
   attr_accessor :region, :prelim
   
   @@all = []
-  
-  def that
-    arr = ["one", "two", "three"]
-    arr.each{|num| puts num}
-  end 
 
   def call 
     puts "Which region would you like to check for activity?"
     puts "Atlantic, Eastern Pacific or Central Pacific? (case-sensitive)"
     userinput = gets.strip
-    @region = StormData::Region.find_by_name(userinput) #returns either a region object or nil    
-    # get data for that region object
-    if @region 
-      # get data for that region
-      prelim_data 
-      save
-    else 
-      puts "Invalid response, please enter 'Atlantic, Eastern Pacific or Central Pacific."
-      call 
-    end 
+    @region = StormData::Region.find_by_name(userinput)  
+    binding.pry
   end 
   
   def prelim_data 
