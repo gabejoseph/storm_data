@@ -1,14 +1,15 @@
 class StormData::CLI 
   
-  attr_accessor :region, :prelim
+  attr_accessor :region
   
   @@all = []
 
   def call 
+    puts "Welcome to Storm Chasers!"
     puts "Which region would you like to check for activity?"
     puts "Atlantic, Eastern Pacific or Central Pacific? (case-sensitive)"
     userinput = gets.strip
-    @region = StormData::Region.find_by_name(userinput) 
+    @region = StormData::Region.find_by_name(userinput)
     x = StormData::Scraper.scrape_prelim(@region)
     prelim_data(x)
   end 
@@ -16,11 +17,9 @@ class StormData::CLI
   def prelim_data(x)
     if x[1] != "None"
       puts "Registered Disturbances are as follows:"
-      puts "#{variable.prelim.join(" ")}"
-      supp_data
-    else 
+      puts "#{x.join(" ")}"
+    else  
       puts "No Disturbances detected"
-      supp_data
     end 
   end 
   
@@ -29,7 +28,7 @@ class StormData::CLI
     puts "Type 'Yes or No'"
     variable = gets.strip
     if variable == "Yes" || variable == "yes"
-      StormData::Scraper.add_extra(@region)
+      StormData::Region.extra(@region)
       restart
     elsif variable == "No" || variable == "no"
       restart
