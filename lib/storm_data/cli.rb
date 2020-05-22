@@ -9,9 +9,6 @@ class StormData::CLI
     userinput = gets.strip
     StormData::Region.new("#{userinput}")
     prelim_data
-    # blank = StormData::Region.find_by_name(userinput)
-    # x = StormData::Scraper.scrape_prelim(blank)
-    # prelim_data(x)
   end 
   
   def prelim_data
@@ -22,6 +19,7 @@ class StormData::CLI
     else 
       puts "No Disturbances detected"
     end 
+    supp_data
   end 
   
   def supp_data 
@@ -29,7 +27,8 @@ class StormData::CLI
     puts "Type 'Yes or No'"
     variable = gets.strip
     if variable == "Yes" || variable == "yes"
-      StormData::Region.extra(@region)
+      puts StormData::Region.all[0].supp
+      #puts StormData::Region.all[0].supp
       restart
     elsif variable == "No" || variable == "no"
       restart
@@ -44,8 +43,7 @@ class StormData::CLI
     puts "Type 'Yes or No'"
     variable = gets.strip
     if variable == "Yes" || variable == "yes"
-      StormData::CLI.clear 
-      StormData::Scraper.clear
+      StormData::Region.clear
       call
     elsif variable == "No" || variable == "no"
       puts "Thanks for using 'Storm Chasers!'"

@@ -12,11 +12,6 @@ class StormData::Region
         save
     end
 
-    def self.extra(userinput)
-        #calls scraper and fixes data to self
-        #puts extra data
-    end 
-
     def self.find_by_name(userinput)
         returnvalue = self.all.find{|x| x.name == userinput}
         returnvalue
@@ -33,6 +28,5 @@ class StormData::Region
     def self.clear
         @@all.clear
     end 
-
-
+    
 end 
