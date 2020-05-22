@@ -1,24 +1,25 @@
 class StormData::CLI 
+
+  attr_accessor :prelim, :supp
     
   def call
-    # StormData::Region.new("Atlantic", "https://www.nhc.noaa.gov/gtwo.php?basin=atlc&fdays=5")
-    # StormData::Region.new("Eastern Pacific", "https://www.nhc.noaa.gov/gtwo.php?basin=epac&fdays=5")
-    # StormData::Region.new("Central Pacific", "https://www.nhc.noaa.gov/gtwo.php?basin=cpac&fdays=5")
     puts "Welcome to Storm Chasers!"
     puts "Which region would you like to check for activity?"
     puts "Atlantic, Eastern Pacific or Central Pacific? (case-sensitive)"
     userinput = gets.strip
     StormData::Region.new("#{userinput}")
+    prelim_data
     # blank = StormData::Region.find_by_name(userinput)
     # x = StormData::Scraper.scrape_prelim(blank)
     # prelim_data(x)
   end 
   
-  def prelim_data(x)
-    if x[1] != "None"
+  def prelim_data
+    x = StormData::Region.all
+    if x[0].prelim[1] != "None"
       puts "Registered Disturbances are as follows:"
-      puts "#{x.join(" ")}"
-    else  
+      puts "#{x[0].prelim.join(" ")}"
+    else 
       puts "No Disturbances detected"
     end 
   end 

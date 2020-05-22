@@ -8,8 +8,7 @@ class StormData::Region
         @url = url
         @prelim = prelim
         @supp = supp
-        x = StormData::Scraper.scrape_prelim(self)
-        binding.pry
+        StormData::Scraper.scrape_prelim(self) #["Disturbances:", "None", "Tropical Weather Discussion"]
         save
     end
 
