@@ -30,7 +30,6 @@ class StormData::CLI
     variable = gets.strip
     if variable == "Yes" || variable == "yes"
       puts StormData::Region.all[0].supp
-      #puts StormData::Region.all[0].supp
       restart
     elsif variable == "No" || variable == "no"
       restart
