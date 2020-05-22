@@ -1,14 +1,13 @@
 class StormData::Region
 
     @@all = []
-    attr_accessor :name, :url, :prelim, :supp
+    attr_accessor :name, :prelim, :supp
 
     def initialize(name)
         @name = name 
-        @url = url
         @prelim = prelim
         @supp = supp
-        StormData::Scraper.scrape_prelim(self) #["Disturbances:", "None", "Tropical Weather Discussion"]
+        StormData::Scraper.scrape(self) #["Disturbances:", "None", "Tropical Weather Discussion"]
         save
     end
 
