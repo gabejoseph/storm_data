@@ -1,17 +1,17 @@
 class StormData::CLI 
-  
-  attr_accessor :region
-  
-  @@all = []
-
-  def call 
+    
+  def call
+    # StormData::Region.new("Atlantic", "https://www.nhc.noaa.gov/gtwo.php?basin=atlc&fdays=5")
+    # StormData::Region.new("Eastern Pacific", "https://www.nhc.noaa.gov/gtwo.php?basin=epac&fdays=5")
+    # StormData::Region.new("Central Pacific", "https://www.nhc.noaa.gov/gtwo.php?basin=cpac&fdays=5")
     puts "Welcome to Storm Chasers!"
     puts "Which region would you like to check for activity?"
     puts "Atlantic, Eastern Pacific or Central Pacific? (case-sensitive)"
     userinput = gets.strip
-    @region = StormData::Region.find_by_name(userinput)
-    x = StormData::Scraper.scrape_prelim(@region)
-    prelim_data(x)
+    StormData::Region.new("#{userinput}")
+    # blank = StormData::Region.find_by_name(userinput)
+    # x = StormData::Scraper.scrape_prelim(blank)
+    # prelim_data(x)
   end 
   
   def prelim_data(x)
@@ -52,18 +52,6 @@ class StormData::CLI
       "Invalid response, please enter 'Yes or No'"
       restart
     end 
-  end 
-  
-  def save  
-    @@all << self
-  end 
-  
-  def self.all 
-    @@all
-  end 
-  
-  def self.clear 
-    @@all.clear 
   end 
     
 end

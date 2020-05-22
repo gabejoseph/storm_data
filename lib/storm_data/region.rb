@@ -3,11 +3,13 @@ class StormData::Region
     @@all = []
     attr_accessor :name, :url, :prelim, :supp
 
-
-
-    def initialize(name, url)
+    def initialize(name)
         @name = name 
         @url = url
+        @prelim = prelim
+        @supp = supp
+        x = StormData::Scraper.scrape_prelim(self)
+        binding.pry
         save
     end
 
@@ -27,6 +29,10 @@ class StormData::Region
 
     def self.all 
         @@all 
+    end 
+
+    def self.clear
+        @@all.clear
     end 
 
 

@@ -1,14 +1,11 @@
 class StormData::Scraper 
   
-  @@all = []
-  
-  attr_accessor :prelim
-  
-  def self.scrape_prelim(user_input)
-    case user_input.name
+  def self.scrape_prelim(x)
+    case x.name
     when "Atlantic"
+      x.url = "https://www.nhc.noaa.gov/gtwo.php?basin=atlc&fdays=5"
       atlantic = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=atlc&fdays=5"))
-      @prelim = atlantic.css("button").collect{|x| x.text}
+      x.prelim = atlantic.css("button").collect{|x| x.text}
     when "Eastern Pacific"
       eastern = Nokogiri::HTML(open("https://www.nhc.noaa.gov/gtwo.php?basin=epac&fdays=5"))
       @prelim = eastern.css("button").collect{|x| x.text}
