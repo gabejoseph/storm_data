@@ -11,7 +11,6 @@ class StormData::CLI
     puts "Atlantic, Eastern Pacific or Central Pacific? (case-sensitive)"
     userinput = gets.strip
     StormData::Region.find_by_name("#{userinput}")
-    prelim_data
   end 
   
   def self.prelim_data

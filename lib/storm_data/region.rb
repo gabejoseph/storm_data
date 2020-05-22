@@ -7,14 +7,13 @@ class StormData::Region
         @name = name 
         @prelim = prelim
         @supp = supp
-        StormData::Scraper.scrape(self) #["Disturbances:", "None", "Tropical Weather Discussion"]
+        StormData::Scraper.scrape(self) 
         save
     end
 
     def self.find_by_name(userinput)
         if self.all.find{|x| x.name == userinput}
-            returnvalue = self.all.find{|x| x.name == userinput}
-            returnvalue
+            StormData::CLI.prelim_data
         else 
             puts "Invalid repsonse, please enter Atlantic, Eastern Pacific or Central Pacific"
             puts "(case-sensitive)"
