@@ -2,16 +2,19 @@ class StormData::CLI
 
   attr_accessor :prelim, :supp
     
-  def call
+  def self.call
+    StormData::Region.new("Atlantic")
+    StormData::Region.new("Eastern Pacific")
+    StormData::Region.new("Central Pacific")
     puts "Welcome to Storm Chasers!"
     puts "Which region would you like to check for activity?"
     puts "Atlantic, Eastern Pacific or Central Pacific? (case-sensitive)"
     userinput = gets.strip
-    StormData::Region.new("#{userinput}")
+    StormData::Region.find_by_name("#{userinput}")
     prelim_data
   end 
   
-  def prelim_data
+  def self.prelim_data
     x = StormData::Region.all
     if x[0].prelim[1] != "None"
       puts "Registered Disturbances are as follows:"
@@ -22,7 +25,7 @@ class StormData::CLI
     supp_data
   end 
   
-  def supp_data 
+  def self.supp_data 
     puts "Would you like supplementary data on this region?"
     puts "Type 'Yes or No'"
     variable = gets.strip
@@ -38,7 +41,7 @@ class StormData::CLI
     end 
   end 
   
-  def restart 
+  def self.restart 
     puts "Would you like to check a new region?"
     puts "Type 'Yes or No'"
     variable = gets.strip
