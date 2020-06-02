@@ -3,9 +3,8 @@ class StormData::CLI
   attr_accessor :prelim, :supp
     
   def self.call
-    StormData::Region.new("Atlantic")
-    StormData::Region.new("Eastern Pacific")
-    StormData::Region.new("Central Pacific")
+    array = ["Atlantic", "Eastern Pacific", "Central Pacific"]
+    array.each{|x| StormData::Region.new(x)}
     puts "Welcome to Storm Chasers!"
     puts "Which region would you like to check for activity?"
     puts "Atlantic, Eastern Pacific or Central Pacific? (case-sensitive)"
