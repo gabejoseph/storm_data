@@ -1,6 +1,6 @@
 # StormData
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem.
+Welcome to Storm Data!  This is a simple CLI app that scrapes NOAA weather data to provide updated information on potential storm surges and hurricanes.
 
 ## Installation
 
@@ -20,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-> Put your Ruby code in the file `lib/storm_data`. To experiment with that code, run `bin/console` for an interactive prompt.
+Put your Ruby code in the file `lib/storm_data`. To experiment with that code, run `bin/console` for an interactive prompt.
 
 ## Development
 
